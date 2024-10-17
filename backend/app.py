@@ -5,13 +5,12 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 from picture import take_picture
 import pyttsx3
-
+import threading
 
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-
 
 # Initialize TTS engine
 engine = pyttsx3.init()
@@ -35,11 +34,38 @@ def generate_image_description(image_path):
     description = processor.decode(out[0], skip_special_tokens=True)
     return description
 
+# Function to speak text
+
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    # Use a thread to run the TTS engine
+    engine.runAndWait()
+
+# Call this function whenever you want to speak out the text
+
+@app.route('/speak', methods=['POST'])
+def speak_endpoint():
+    data = request.json
+    text = data.get('text', '')  # Get the text to speak from the request
+    if text:
+        print(f"Speaking: {text}")  # Debug print
+        threading.Thread(target=speak, args=(text,)).start()  # Speak in a separate thread
+        return jsonify({"message": "Speaking started"}), 200
+    return jsonify({"error": "No text provided"}), 400
+
+
+
+
 # Route for handling image capture and description generation
 @app.route('/generate-description', methods=['POST'])
 def generate_description():
     data = request.json
     user_input = data.get("user_input")
+
+    # Announce that a picture is being taken
+    speak_thread = threading.Thread(target=speak, args=("Taking a picture, please wait.",))
+    speak_thread.start()
 
     # Folder for saving images
     folder_name = "CapturedImages"
@@ -55,20 +81,12 @@ def generate_description():
 
     description = generate_image_description(filepath)
 
+    # Announce the generated description
+    speak_thread = threading.Thread(target=speak, args=(description,))
+    speak_thread.start()
+
     # Return description as JSON response
     return jsonify({"description": description})
-
-# Route to handle text-to-speech
-@app.route('/speak', methods=['POST'])
-def speak():
-    data = request.json
-    text = data.get("text")
-    
-    # Convert text to speech and respond
-    engine.say(text)
-    engine.runAndWait()
-    
-    return jsonify({"message": "Spoken successfully"}), 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5001)
