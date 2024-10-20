@@ -22,7 +22,7 @@
   header {
     background-color: #ffffff; /* White header */
     padding: 20px;
-    color: #6A1B9A; /* Purple text for title */
+    color: #965dba; /* Purple text for title */
     text-align: center;
     border-bottom: 2px solid #e0e0e0; /* Subtle bottom border */
   }
@@ -52,7 +52,7 @@
   }
   
   .record-btn {
-    background-color: #6A1B9A; /* Primary button color (purple) */
+    background-color: #a466cb; /* Primary button color (purple) */
     color: white;
     padding: 15px 30px;
     font-size: 1.2em;

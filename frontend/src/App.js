@@ -63,7 +63,7 @@ function App() {
   return (
     <div className="app-container">
       <header>
-        <h1 className="app-title">Vision for All</h1>
+        <h1 className="app-title">Lumen: Vision for All</h1>
       </header>
       <main>
         <div className="input-card">
