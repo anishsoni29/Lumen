@@ -5,8 +5,10 @@ function App() {
   const [description, setDescription] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [userInput, setUserInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to track loading
 
   const handleCaptureAndDescribe = async (transcript) => {
+    setIsLoading(true); // Set loading to true while processing
     const response = await fetch("http://localhost:5001/generate-description", {
       method: "POST",
       headers: {
@@ -18,22 +20,16 @@ function App() {
     if (response.ok) {
       const data = await response.json();
       setDescription(data.description);
-      
-      // Trigger speech output for the description
-      const speakResponse = await fetch("http://localhost:5001/speak", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: data.description }),
-      });
+      setUserInput(""); // Clear user input after analysis
 
-      if (!speakResponse.ok) {
-        console.error('Error speaking the description:', speakResponse.statusText);
-      }
+      // Trigger speech output for the description
+      const speech = new SpeechSynthesisUtterance(data.description);
+      speech.lang = 'en-US'; // Set language
+      window.speechSynthesis.speak(speech); // Speak the description
     } else {
       console.error('Error generating description:', response.statusText);
     }
+    setIsLoading(false); // Set loading to false after processing
   };
 
   const toggleVoiceRecognition = () => {
@@ -83,7 +79,16 @@ function App() {
           />
         </div>
         <section className="description-section">
-          <h2>{description ? `Description: ${description}` : "No description yet."}</h2>
+          {isLoading ? (
+            <div className="loading-container">
+              <div className="loader"></div>
+              <p>Generating description...</p>
+            </div>
+          ) : (
+            <div className="description-box">
+              <h2>{description ? `Description: ${description}` : "No description yet."}</h2>
+            </div>
+          )}
         </section>
       </main>
       <footer>
