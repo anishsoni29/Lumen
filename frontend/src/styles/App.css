@@ -1,7 +1,7 @@
 /* General Styles */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background: url('../../../images/hey1.jpg') no-repeat center center fixed;
+  background: url('../../images/hey1.jpg') no-repeat center center fixed;
   background-size: cover;
   backdrop-filter: blur(8px); /* Blurry background effect */
   color: #eaeaea;
