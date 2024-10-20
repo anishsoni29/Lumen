@@ -1,0 +1,98 @@
+/* src/styles/App.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    background-color: #ffffff; /* Pure white background */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px; /* Padding for overall layout */
+  }
+  
+  header {
+    background-color: #ffffff; /* White header */
+    padding: 20px;
+    color: #6A1B9A; /* Purple text for title */
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0; /* Subtle bottom border */
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .input-card {
+    background-color: #ffffff; /* White card background */
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-bottom: 40px;
+  }
+  
+  .record-btn {
+    background-color: #6A1B9A; /* Primary button color (purple) */
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(106, 27, 154, 0.3); /* Button shadow */
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s; /* Smooth transitions */
+    width: 100%; /* Full width button */
+  }
+  
+  .record-btn:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+  }
+  
+  .input-area {
+    width: 100%; /* Full width for the text area */
+    font-size: 1em; /* Font size for readability */
+    padding: 10px;
+    border: 2px solid #E3E4E8; /* Border for the text area */
+    border-radius: 8px; /* Rounded corners */
+    margin-top: 15px; /* Space above the text area */
+    resize: none; /* Prevent resizing */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inner shadow */
+    height: 100px; /* Fixed height for the text area */
+  }
+  
+  .description-section h2 {
+    color: #333; /* Dark text for description */
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 20px; /* Space above the description */
+  }
+  
+  footer {
+    background-color: #ffffff; /* White footer */
+    color: #333; /* Dark text color */
+    padding: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    border-top: 2px solid #e0e0e0; /* Subtle top border */
+  }
+  
