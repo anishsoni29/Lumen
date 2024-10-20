@@ -8,6 +8,9 @@ venv/
 pi/
 path/
 
+#PEM Files
+*.pem 
+
 # Ignore config files that contain sensitive information
 firebase_creds.json
 storage_creds.json

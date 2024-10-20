@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVolumeUp, faStop } from '@fortawesome/free-solid-svg-icons'; 
 import './styles/App.css';
@@ -8,6 +8,17 @@ function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [isLoading, setIsLoading] = useState(false); 
+  const [stream, setStream] = useState(null); // Camera stream state
+  const videoRef = useRef(null); // Video element for camera view
+
+  useEffect(() => {
+    return () => {
+      // Cleanup: Stop the camera stream when the component is unmounted
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+    };
+  }, [stream]);
 
   const handleCaptureAndDescribe = async (transcript) => {
     setIsLoading(true); 
@@ -34,6 +45,15 @@ function App() {
   };
 
   const toggleVoiceRecognition = () => {
+    if (!isRecording) {
+      startCamera(); // Start the camera when voice recording begins
+      startRecognition();
+    } else {
+      stopCamera(); // Stop the camera when voice recording stops
+    }
+  };
+
+  const startRecognition = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
 
@@ -56,16 +76,38 @@ function App() {
     recognition.onend = () => {
       setIsRecording(false);
       console.log('Voice recognition ended.');
+      stopCamera(); // Stop the camera when voice recognition ends
     };
 
-    recognition.start(); 
+    recognition.start();
+  };
+
+  const startCamera = async () => {
+    try {
+      const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true });
+      setStream(mediaStream);
+      if (videoRef.current) {
+        videoRef.current.srcObject = mediaStream;
+      }
+    } catch (err) {
+      console.error('Error accessing camera:', err);
+    }
+  };
+
+  const stopCamera = () => {
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop()); // Stop all media tracks
+      setStream(null); // Clear the stream state
+    }
   };
 
   return (
     <div className="app-container">
       <header>
-        <h1 className="app-title">Lumen: Vision for All</h1>
+      <h1 className="digital-font ">Lumen: Vision for All</h1>
       </header>
+
+
       <main>
         <div className="input-card">
           <button onClick={toggleVoiceRecognition} className="record-btn">
@@ -87,6 +129,16 @@ function App() {
             rows={4}
           />
         </div>
+
+        {/* Camera view section */}
+        <section className="camera-section">
+          {stream && (
+            <div className="camera-view">
+              <video ref={videoRef} autoPlay playsInline className="video-element" />
+            </div>
+          )}
+        </section>
+
         <section className="description-section">
           {isLoading ? (
             <div className="loading-container">
@@ -101,7 +153,7 @@ function App() {
         </section>
       </main>
       <footer>
-        <p>Designed with Accessibility in Mind</p>
+        <p>designed with *Accessibility* in mind</p>
       </footer>
     </div>
   );
