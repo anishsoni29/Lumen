@@ -5,10 +5,10 @@ function App() {
   const [description, setDescription] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State to track loading
+  const [isLoading, setIsLoading] = useState(false); 
 
   const handleCaptureAndDescribe = async (transcript) => {
-    setIsLoading(true); // Set loading to true while processing
+    setIsLoading(true); 
     const response = await fetch("http://localhost:5001/generate-description", {
       method: "POST",
       headers: {
@@ -20,16 +20,15 @@ function App() {
     if (response.ok) {
       const data = await response.json();
       setDescription(data.description);
-      setUserInput(""); // Clear user input after analysis
+      setUserInput(""); 
 
-      // Trigger speech output for the description
       const speech = new SpeechSynthesisUtterance(data.description);
-      speech.lang = 'en-US'; // Set language
-      window.speechSynthesis.speak(speech); // Speak the description
+      speech.lang = 'en-US'; 
+      window.speechSynthesis.speak(speech); 
     } else {
       console.error('Error generating description:', response.statusText);
     }
-    setIsLoading(false); // Set loading to false after processing
+    setIsLoading(false); 
   };
 
   const toggleVoiceRecognition = () => {
@@ -43,8 +42,8 @@ function App() {
 
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
-      setUserInput(transcript); // Update the text area with the spoken input
-      handleCaptureAndDescribe(transcript); // Immediately analyze the input
+      setUserInput(transcript); 
+      handleCaptureAndDescribe(transcript);
     };
 
     recognition.onerror = (event) => {
@@ -57,7 +56,7 @@ function App() {
       console.log('Voice recognition ended.');
     };
 
-    recognition.start(); // Start recording
+    recognition.start(); 
   };
 
   return (
