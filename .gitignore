@@ -17,16 +17,6 @@ storage_creds.json
 config.py
 local_data.json
 
-# Audio and image files
-*.mp3
-*.wav
-*.png
-*.jpg
-*.jpeg
-*.gif
-CapturedImages/
-images/
-
 # Docker
 Dockerfile
 
