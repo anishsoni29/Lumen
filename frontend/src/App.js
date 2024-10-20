@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp, faStop } from '@fortawesome/free-solid-svg-icons'; 
 import './styles/App.css';
 
 function App() {
@@ -67,7 +69,15 @@ function App() {
       <main>
         <div className="input-card">
           <button onClick={toggleVoiceRecognition} className="record-btn">
-            {isRecording ? '⏹ Stop Recording' : '🎤 Start Recording'}
+            {isRecording ? (
+              <>
+                Stop Recording <FontAwesomeIcon icon={faStop} />
+              </>
+            ) : (
+              <>
+                Start Recording <FontAwesomeIcon icon={faVolumeUp} />
+              </>
+            )}
           </button>
           <textarea
             className="input-area"
