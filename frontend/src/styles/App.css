@@ -22,7 +22,7 @@
   header {
     background-color: #ffffff; /* White header */
     padding: 20px;
-    color: #965dba; /* Purple text for title */
+    color: #448dd6; /* Purple text for title */
     text-align: center;
     border-bottom: 2px solid #e0e0e0; /* Subtle bottom border */
   }
@@ -52,7 +52,7 @@
   }
   
   .record-btn {
-    background-color: #a466cb; /* Primary button color (purple) */
+    background-color: #6698cb; /* Primary button color (purple) */
     color: white;
     padding: 15px 30px;
     font-size: 1.2em;
@@ -88,7 +88,7 @@
   
   .loader {
     border: 8px solid #e0e0e0; /* Light gray background */
-    border-top: 8px solid #6A1B9A; /* Purple border */
+    border-top: 8px solid #2776c5; /* Purple border */
     border-radius: 50%;
     width: 50px; /* Loader size */
     height: 50px; /* Loader size */
@@ -108,7 +108,7 @@
   
   .description-box {
     background-color: #f3f4f6; /* Light gray background for description */
-    border: 2px solid #6A1B9A; /* Purple border */
+    border: 2px solid #2f5db3; /* Purple border */
     border-radius: 12px; /* Rounded corners */
     padding: 15px; /* Padding inside the box */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow for box */
