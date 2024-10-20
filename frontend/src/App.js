@@ -99,7 +99,7 @@ function App() {
       stream.getTracks().forEach(track => track.stop()); // Stop all media tracks
       setStream(null); // Clear the stream state
     }
-  };
+  }
 
   return (
     <div className="app-container">
@@ -154,6 +154,7 @@ function App() {
       </main>
       <footer>
         <p>designed with *Accessibility* in mind</p>
+        <p>we're open source. check us out on <a href="https://github.com/anishsoni29/Lumen" target="_blank">github</a></p>
       </footer>
     </div>
   );
