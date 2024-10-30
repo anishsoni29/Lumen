@@ -3,7 +3,8 @@ google-cloud-texttospeech
 firebase-admin
 numpy
 opencv-python
-pyttsx3
+gTTS
+playsound
 scipy
 pygame
 sounddevice
@@ -11,3 +12,4 @@ transformers
 torch
 Pillow
 simpleaudio
+pydub

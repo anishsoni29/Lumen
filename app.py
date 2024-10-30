@@ -4,16 +4,14 @@ import tempfile
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 from picture import take_picture
-import pyttsx3
 import threading
+from gtts import gTTS
+import playsound  # You'll need this to play the generated audio
 
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
-
-# Initialize TTS engine
-engine = pyttsx3.init()
 
 # Initialize the image captioning model from Hugging Face
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -34,16 +32,15 @@ def generate_image_description(image_path):
     description = processor.decode(out[0], skip_special_tokens=True)
     return description
 
-# Function to speak text
-
+# Function to speak text using gTTS
 def speak(text):
-    engine = pyttsx3.init()
-    engine.say(text)
-    # Use a thread to run the TTS engine
-    engine.runAndWait()
+    tts = gTTS(text=text, lang='en')
+    audio_file = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+    tts.save(audio_file.name)
+    # Use playsound to play the audio
+    playsound.playsound(audio_file.name)
 
 # Call this function whenever you want to speak out the text
-
 @app.route('/speak', methods=['POST'])
 def speak_endpoint():
     data = request.json
@@ -53,9 +50,6 @@ def speak_endpoint():
         threading.Thread(target=speak, args=(text,)).start()  # Speak in a separate thread
         return jsonify({"message": "Speaking started"}), 200
     return jsonify({"error": "No text provided"}), 400
-
-
-
 
 # Route for handling image capture and description generation
 @app.route('/generate-description', methods=['POST'])

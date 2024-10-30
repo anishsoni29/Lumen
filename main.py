@@ -1,15 +1,13 @@
 import cv2
 import numpy as np
-import pyttsx3
+from gtts import gTTS
+import playsound
 import speech_recognition as sr
 import os
 import tempfile
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 from picture import take_picture  # Assuming you have a method to capture images from the camera
-
-# Initialize TTS engine
-engine = pyttsx3.init()
 
 # Initialize the image captioning model from Hugging Face
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -55,9 +53,11 @@ def get_response(user_input):
     return description
 
 def speak(text):
-    """Convert text to speech."""
-    engine.say(text)
-    engine.runAndWait()
+    """Convert text to speech using gTTS."""
+    tts = gTTS(text=text, lang='en')
+    audio_file = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
+    tts.save(audio_file.name)
+    playsound.playsound(audio_file.name)
 
 def get_voice_input():
     """Capture user input via microphone"""
