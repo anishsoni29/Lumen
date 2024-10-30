@@ -9,3 +9,4 @@ numpy
 pvcheetah
 pygame
 opencv-python
+pyttsx3
