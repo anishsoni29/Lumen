@@ -1,13 +1,16 @@
 import cv2
 import numpy as np
 from gtts import gTTS
-import playsound
+import pygame  # Updated to use pygame
 import speech_recognition as sr
 import os
 import tempfile
 from transformers import BlipProcessor, BlipForConditionalGeneration
 from PIL import Image
 from picture import take_picture  # Assuming you have a method to capture images from the camera
+
+# Initialize Pygame Mixer
+pygame.mixer.init()
 
 # Initialize the image captioning model from Hugging Face
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -57,7 +60,12 @@ def speak(text):
     tts = gTTS(text=text, lang='en')
     audio_file = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
     tts.save(audio_file.name)
-    playsound.playsound(audio_file.name)
+    
+    # Use pygame to play the audio
+    pygame.mixer.music.load(audio_file.name)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():  # Wait for music to finish playing
+        pygame.time.Clock().tick(10)
 
 def get_voice_input():
     """Capture user input via microphone"""

@@ -4,10 +4,7 @@ firebase-admin
 numpy
 opencv-python
 gTTS
-playsound
-scipy
 pygame
-sounddevice
 transformers
 torch
 Pillow

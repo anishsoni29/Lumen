@@ -6,12 +6,15 @@ from PIL import Image
 from picture import take_picture
 import threading
 from gtts import gTTS
-import playsound  # You'll need this to play the generated audio
+import pygame  # Updated to use pygame
 
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
+# Initialize Pygame Mixer
+pygame.mixer.init()
 
 # Initialize the image captioning model from Hugging Face
 processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -37,8 +40,12 @@ def speak(text):
     tts = gTTS(text=text, lang='en')
     audio_file = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
     tts.save(audio_file.name)
-    # Use playsound to play the audio
-    playsound.playsound(audio_file.name)
+
+    # Use pygame to play the audio
+    pygame.mixer.music.load(audio_file.name)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():  # Wait for music to finish playing
+        pygame.time.Clock().tick(10)
 
 # Call this function whenever you want to speak out the text
 @app.route('/speak', methods=['POST'])
