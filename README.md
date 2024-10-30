@@ -2,8 +2,6 @@
 
 Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, and it remembers those memories for you.
 
-check demo on [here](https://twitter.com/advaitpaliwal/status/1779697730526310521)
-
 ## Hardware Requirements
 
 - Raspberry Pi (model 4 or newer)
@@ -26,7 +24,7 @@ check demo on [here](https://twitter.com/advaitpaliwal/status/177969773052631052
 
 1. Clone the repository to your Raspberry Pi or local machine:
    ```
-   git clone https://github.com/advaitpaliwal/insight
+   git clone https://github.com/anishsoni29/Lumen
    ```
 2. Install the required dependencies:
    ```
