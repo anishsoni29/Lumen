@@ -3,7 +3,9 @@ google-generativeai
 SpeechRecognition
 firebase-admin
 google-cloud-texttospeech
-pyaudio
+sounddevice
+scipy
+numpy
 pvcheetah
 pygame
 opencv-python

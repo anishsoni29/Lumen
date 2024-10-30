@@ -1,47 +1,27 @@
-import pyaudio
+import sounddevice as sd
 import numpy as np
-import wave
+from scipy.io.wavfile import write
 import time
-import struct
 
 # Function to record audio and save it as a WAV file
 def record_audio(filename, duration=3, rate=16000):
-    pa = pyaudio.PyAudio()
-    stream = pa.open(format=pyaudio.paInt16, channels=1, rate=rate, input=True, frames_per_buffer=1024)
-
     print("Recording...")
-
-    frames = []
-    for _ in range(0, int(rate / 1024 * duration)):
-        data = stream.read(1024)
-        frames.append(data)
-
+    audio_data = sd.rec(int(duration * rate), samplerate=rate, channels=1, dtype='int16')
+    sd.wait()  # Wait until recording is finished
     print("Recording done.")
-
-    stream.stop_stream()
-    stream.close()
-    pa.terminate()
-
-    wf = wave.open(filename, 'wb')
-    wf.setnchannels(1)
-    wf.setsampwidth(pa.get_sample_size(pyaudio.paInt16))
-    wf.setframerate(rate)
-    wf.writeframes(b''.join(frames))
-    wf.close()
+    write(filename, rate, audio_data)  # Save as WAV file
 
 # Function to listen and process audio input
-def listen_for_wake_word():
-    pa = pyaudio.PyAudio()
-    stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1024)
-
+def listen_for_wake_word(rate=16000):
     print("Listening for the wake word...")
-    
-    while True:
-        data = stream.read(1024)
-        audio_data = np.frombuffer(data, dtype=np.int16)
+    duration = 1  # Listen in short intervals (1 second)
+    volume_threshold = 2000  # Set your wake word volume threshold
 
-        # Example: crude approach to detect wake word using volume (this is NOT accurate)
-        volume_threshold = 2000
+    while True:
+        audio_data = sd.rec(int(duration * rate), samplerate=rate, channels=1, dtype='int16')
+        sd.wait()
+
+        # Example crude approach to detect wake word using volume (this is NOT accurate)
         if np.max(audio_data) > volume_threshold:
             print("Wake word detected!")
             return True
