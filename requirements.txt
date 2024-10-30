@@ -3,7 +3,6 @@ google-generativeai
 SpeechRecognition
 firebase-admin
 google-cloud-texttospeech
-picamera2
 pyaudio
 pvcheetah
 pygame
