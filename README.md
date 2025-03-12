@@ -58,6 +58,10 @@ The project's configuration can be modified by editing the `config.example.py` f
 
 This project is licensed under the [License Name] - see the [LICENSE](LICENSE) file for details.
 
+## Stock
+
+![lumen-2](https://github.com/user-attachments/assets/0ae1afa0-3dc2-4e35-b45a-bb39d2013a5b)
+
 ## Acknowledgements
 
 @anishsoni29
