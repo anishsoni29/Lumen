@@ -3,7 +3,8 @@
 Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, and it remembers those memories for you.
 
 ## Working Project:
-<img width="1440" alt="Screenshot 2025-04-20 at 4 44 19 PM" src="https://github.com/user-attachments/assets/deefb283-3442-40fc-85ac-b133586a47ed" />
+<img width="1440" alt="Screenshot 2025-04-21 at 1 10 08 AM" src="https://github.com/user-attachments/assets/fc2e8557-d505-4dd6-832a-cbcbe9648de2" />
+
 
 ## Hardware Requirements
 
@@ -76,6 +77,8 @@ python main.py
 ```
 
 This will start the application in terminal mode, which will listen for the wake word and respond to speech commands.
+
+<img width="322" alt="Screenshot 2025-04-21 at 1 08 02 AM" src="https://github.com/user-attachments/assets/97cff1a4-ed9d-400b-aea6-90ab4ca0b17f" />
 
 ## Configuration
 
