@@ -3,7 +3,7 @@
 Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, and it remembers those memories for you.
 
 ## Working Project:
-![773193c5-d78e-4345-9599-a421b44d9a8a](https://github.com/user-attachments/assets/76a4d031-2663-4d36-bbcb-0c0a0998704c)
+<img width="1440" alt="Screenshot 2025-04-20 at 4 16 53 PM" src="https://github.com/user-attachments/assets/e4792aef-5044-4c62-bdfb-e4ee564e7ab3" />
 
 ## Hardware Requirements
 
@@ -22,6 +22,8 @@ Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, an
 - firebase-admin
 - google-cloud-texttospeech
 - picamera2
+
+<img width="1440" alt="Screenshot 2025-04-20 at 4 16 26 PM" src="https://github.com/user-attachments/assets/1f26b3c1-8dd2-40a4-8ecf-b299e1a5fbf4" />
 
 ## Setup
 
@@ -43,12 +45,35 @@ Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, an
    ```
 
 ## Usage
-![34fc0f66-a7ca-45cb-9b5d-dd9f514cdf56](https://github.com/user-attachments/assets/bb75d58e-38d0-4e87-a3e0-96d48969efb5)
 
-1. Run the main script:
+<img width="1440" alt="Screenshot 2025-04-20 at 4 17 11 PM" src="https://github.com/user-attachments/assets/48527869-87b9-45a6-aabc-3b710e75678a" />
+
+
+
+### Running the Full Application (Frontend + Backend)
+
+To run the complete application with both frontend and backend:
+
+1. Start the frontend:
    ```
-   python main.py
+   cd speech-interface
+   npm start
    ```
+   This will launch the frontend at http://localhost:3000
+
+2. In a new terminal, start the backend:
+   ```
+   python glasses.py
+   ```
+
+### Running Backend Only
+
+If you only need to run the backend without the web interface:
+```
+python main.py
+```
+
+This will start the application in terminal mode, which will listen for the wake word and respond to speech commands.
 
 ## Configuration
 
@@ -57,10 +82,6 @@ The project's configuration can be modified by editing the `config.example.py` f
 ## License
 
 This project is licensed under the [License Name] - see the [LICENSE](LICENSE) file for details.
-
-## Stock
-
-![lumen-2](https://github.com/user-attachments/assets/0ae1afa0-3dc2-4e35-b45a-bb39d2013a5b)
 
 ## Acknowledgements
 
