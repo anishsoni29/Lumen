@@ -3,7 +3,7 @@
 Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, and it remembers those memories for you.
 
 ## Working Project:
-![773193c5-d78e-4345-9599-a421b44d9a8a](https://github.com/user-attachments/assets/76a4d031-2663-4d36-bbcb-0c0a0998704c)
+<img width="1440" alt="Screenshot 2025-04-20 at 4 44 19 PM" src="https://github.com/user-attachments/assets/deefb283-3442-40fc-85ac-b133586a47ed" />
 
 ## Hardware Requirements
 
