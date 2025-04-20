@@ -5,6 +5,8 @@ Lumen uses gemini 1.5 pro to answer questions based on what you see and hear, an
 ## Working Project:
 <img width="1440" alt="Screenshot 2025-04-21 at 1 10 08 AM" src="https://github.com/user-attachments/assets/fc2e8557-d505-4dd6-832a-cbcbe9648de2" />
 
+## Live Project Demo:
+👉 [Click here to watch on YouTube](https://youtu.be/Uh7nVr40OHo)
 
 ## Hardware Requirements
 
